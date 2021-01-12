@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="IHM.css" />
+		<title>Ajouter un robot</title>
+	</head>
+
+	<body>
+		<div id="bloc_page">
+			<header>
+				<img src="images/logo_blanc_petit.png" alt="Logo du projet" />
+			</header>
+		
+			<section>
+				<h2>Saisir le nom du nouveau type de robot</h2>
+				<form method="post" action="">
+    				<p>
+        				<label for="type_robot">Type de robot :</label>
+        				<input type="text" name="type_robot" id="type_robot" placeholder="Ex : Robotino" size="30" maxlength="10" />
+   					</p>
+				</form>
+				<p><br /><input type="button" value="Valider" id="valider"><br /></p>
+			</section>
+
+			<footer>
+				<div id="Credits">
+					<p>Projet réalisé par le groupe Robotique Mobile M2 2020-2021</p>					
+				</div>
+				<div id="logo_junia">
+					<img src ="images/logo_junia.png" alt="Logo Junia" />
+				</div>
+				<div id="Retour">
+					<div class="bouton">
+						<a href="IHM_Liste_Robots.html">Retour</a>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+		<script type="text/javascript">
+			const elt = document.getElementById('valider');
+			elt.addEventListener('click', function valider(event) {
+				alert("Type de robot ajouté.");
+				document.location = "IHM_Liste_Robots.html";
+			})
+
+			//Bouton de retour
+			const elt_retour = document.getElementById('Retour');
+			elt_retour.addEventListener('click', function retour(event){
+				event.preventDefault()
+				document.location = "IHM_Liste_Robots.html";
+			})
+		</script>
+	</body>
+</html>
