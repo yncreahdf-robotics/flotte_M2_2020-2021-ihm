@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="IHM.css" />
+		<title>Validation de la commande</title>
+	</head>
+
+	<body>
+		<div id="bloc_page">
+			<header>
+				<img src="images/logo_blanc_petit.png" alt="Logo du projet" />
+			</header>
+		
+			<section>
+				<h2>Commande validée avec succès !</h2>
+				<h2 class="Commande"><br />Liste des articles commandés :</h2>
+				<ul class="Commande">
+					<li>Article 1  -  Quantité : X  -  Prix unitaire : €  -  Prix total : €</li>
+					<br />
+					<li>Article 2  -  Quantité : X  -  Prix unitaire : €  -  Prix total : €</li>
+					<br />
+					<li>Article 3  -  Quantité : X  -  Prix unitaire : €  -  Prix total : €</li>
+				</ul>
+				<p class="Commande">
+					Prix total : €
+				</p>
+				<nav>
+					<div class="bouton" id="retour">
+						<h3><a href="IHM_Page_Client.html">Retour à l'accueil</a></h3>
+					</div>
+				</nav>
+			</section>
+
+			<footer>
+				<div id="Credits">
+					<p>Projet réalisé par le groupe Robotique Mobile M2 2020-2021</p>					
+				</div>
+				<div id="logo_junia">
+					<img src ="images/logo_junia.png" alt="Logo Junia" />
+				</div>
+				<div id="Retour">
+					<a href="IHM_Commande_Client.html" hidden="hidden">Retour</a>
+				</div>
+			</footer>
+		</div>
+		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+		<script type="text/javascript">
+
+
+			//Bouton de retour
+			const elt_retour = document.getElementById('retour');
+			elt_retour.addEventListener('click', function client(event){
+				event.preventDefault()
+				document.location = "IHM_Page_Client.html";
+			})
+		</script>
+	</body>
+</html>
