@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="IHM.css" />
+		<title>Liste des robots</title>
+	</head>
+
+	<body>
+		<div id="bloc_page">
+			<header>
+				<img src="images/logo_blanc_petit.png" alt="Logo du projet" />
+			</header>
+		
+			<section>
+				<h2>Liste des robots</h2>
+				<div id="Listes">
+					<div id="Tableau">
+						<table>
+							<thead>
+								<tr>
+									<th>ID Robot</th>
+									<th>Type de Robot</th>
+									<th>Disponibilité</th>
+									<th>Dernière position</th>
+								</tr>
+							</thead>
+
+							<tfoot>
+								<tr>
+									<th>ID Robot</th>
+									<th>Type de Robot</th>
+									<th>Disponibilité</th>
+									<th>Dernière position</th>
+								</tr>
+							</tfoot>
+
+							<tbody>
+								<tr>
+									<td>126</td>
+									<td>Robotino</td>
+									<td>Livraison</td>
+									<td>Préparateur</td>
+								</tr>
+								<tr>
+									<td>152</td>
+									<td>Robotino</td>
+									<td>En attente</td>
+									<td>Table 3</td>
+								</tr>
+								<tr>
+									<td>198</td>
+									<td>Kobuki</td>
+									<td>En charge</td>
+									<td>Préparateur</td>
+								</tr>
+								<tr>
+									<td>212</td>
+									<td>Kobuki</td>
+									<td>En attente</td>
+									<td>Zone de charge</td>
+								</tr>
+								<tr>
+									<td>146</td>
+									<td>Heron</td>
+									<td>En attente</td>
+									<td>Zone de charge</td>
+								</tr>
+								<tr>
+									<td>209</td>
+									<td>Heron</td>
+									<td>Livraison</td>
+									<td>Table 1</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<nav>
+						<div class="bouton" id="ajout_robot">
+							<a href="IHM_Ajouter_Robot.html">Ajouter un type de robot</a>
+						</div>
+					</nav>
+				</div>
+			</section>
+
+			<footer>
+				<div id="Credits">
+					<p>Projet réalisé par le groupe Robotique Mobile M2 2020-2021</p>					
+				</div>
+				<div id="logo_junia">
+					<img src ="images/logo_junia.png" alt="Logo Junia" />
+				</div>
+				<div id="Retour">
+					<div class="bouton">
+						<a href="IHM_Page_Proprietaire.html">Retour</a>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+		<script type="text/javascript">
+			//Bouton de retour
+			const elt_retour = document.getElementById('Retour');
+			elt_retour.addEventListener('click', function retour(event){
+				event.preventDefault()
+				document.location = "IHM_Page_Proprietaire.html";
+			})
+
+			//Bouton ajout robot
+			const elt_ajout = document.getElementById('ajout_robot');
+			elt_ajout.addEventListener('click', function ajout_robot(event){
+				event.preventDefault()
+				document.location = "IHM_Ajouter_Robot.html";
+			})
+		</script>
+	</body>
+</html>

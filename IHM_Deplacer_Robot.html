@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="IHM.css" />
+		<title>Deplacer un robot</title>
+	</head>
+
+	<body>
+		<div id="bloc_page">
+			<header>
+				<img src="images/logo_blanc_petit.png" alt="Logo du projet" />
+			</header>
+		
+			<section>
+				<h2>Choisir le robot à deplacer parmi les robots disponible</h2>
+				<form method="post" action="">
+   					<p>
+       					<input type="radio" name="Robot" value="ID_152" id="ID_152" /> <label for="ID_152">ID : 152 - Type : Robotino</label><br />
+       					<br />
+    					<input type="radio" name="Robot" value="ID_212" id="ID_212" /> <label for="ID_212">ID : 212 - Type : Kobuki</label><br />
+    					<br />
+       					<input type="radio" name="Robot" value="ID_146" id="ID_146" /> <label for="ID_146">ID : 146 - Type : Heron</label><br />
+   					</p>
+				</form>
+				<p><br /></p>
+
+				<h2>Choisir la position d'arrivée du robot</h2>
+				<form method="post" action="">
+   					<p>
+       					<input type="radio" name="Position" value="Charge" id="Charge" /> <label for="Charge">Zone de charge</label><br />
+       					<br />
+    					<input type="radio" name="Position" value="Preparateur" id="Preparateur" /> <label for="Preparateur">Preparateur</label><br />
+    					<br />
+       					<input type="radio" name="Position" value="Table1" id="Table1" /> <label for="Table1">Table 1</label><br />
+       					<br />
+       					<input type="radio" name="Position" value="Table2" id="Table2" /> <label for="Table2">Table 2</label><br />
+       					<br />
+       					<input type="radio" name="Position" value="Table3" id="Table3" /> <label for="Table3">Table 3</label><br />
+   					</p>
+				</form>
+				<p><br /><input type="button" name="Supprimer" value="Valider" id="valider" /><br /></p>
+			</section>
+
+			<footer>
+				<div id="Credits">
+					<p>Projet réalisé par le groupe Robotique Mobile M2 2020-2021</p>					
+				</div>
+				<div id="logo_junia">
+					<img src ="images/logo_junia.png" alt="Logo Junia" />
+				</div>
+				<div id="Retour">
+					<div class="bouton">
+						<a href="IHM_Page_Proprietaire.html">Retour</a>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+		<script type="text/javascript">
+			//Bouton de retour
+			const elt_retour = document.getElementById('Retour');
+			elt_retour.addEventListener('click', function retour(event){
+				event.preventDefault()
+				document.location = "IHM_Page_Proprietaire.html";
+			})
+		</script>
+	</body>
+</html>
