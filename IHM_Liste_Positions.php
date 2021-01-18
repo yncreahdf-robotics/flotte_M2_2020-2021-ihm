@@ -8,9 +8,8 @@
 
 	<body>
 		<div id="bloc_page">
-			<header>
-				<img src="images/logo_blanc_petit.png" alt="Logo du projet" />
-			</header>
+			
+			<?php include("entete.php"); ?>
 		
 			<section>
 				<h2>Liste des Positions</h2>
@@ -78,31 +77,20 @@
 					</div>
 					<nav>
 						<div class="bouton" id="ajouter">
-							<a href="IHM_Ajouter_Position.html">Ajouter une position</a>
+							<a href="IHM_Ajouter_Position.php">Ajouter une position</a>
 						</div>
 						<div class="bouton" id="modifier">
-							<a href="IHM_Modifier_Position.html">Modifier une position</a>
+							<a href="IHM_Modifier_Position.php">Modifier une position</a>
 						</div>
 						<div class="bouton" id="supprimer">
-							<a href="IHM_Supprimer_Position.html">Supprimer une position</a>
+							<a href="IHM_Supprimer_Position.php">Supprimer une position</a>
 						</div>
 					</nav>
 				</div>
 			</section>
 
-			<footer>
-				<div id="Credits">
-					<p>Projet réalisé par le groupe Robotique Mobile M2 2020-2021</p>					
-				</div>
-				<div id="logo_junia">
-					<img src ="images/logo_junia.png" alt="Logo Junia" />
-				</div>
-				<div id="Retour">
-					<div class="bouton">
-						<a href="IHM_Page_Proprietaire.html">Retour</a>
-					</div>
-				</div>
-			</footer>
+			<?php include("pied_de_page.php"); ?>
+
 		</div>
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 		<script type="text/javascript">
@@ -110,28 +98,28 @@
 			const elt_retour = document.getElementById('Retour');
 			elt_retour.addEventListener('click', function retour(event){
 				event.preventDefault()
-				document.location = "IHM_Page_Proprietaire.html";
+				document.location = "IHM_Page_Proprietaire.php";
 			})
 
 			//Bouton pour ajouter un article
 			const elt_ajouter = document.getElementById('ajouter');
 			elt_ajouter.addEventListener('click', function ajouter(event){
 				event.preventDefault()
-				document.location = "IHM_Ajouter_Position.html";
+				document.location = "IHM_Ajouter_Position.php";
 			})
 
 			//Bouton pour modifier un article
 			const elt_modifier = document.getElementById('modifier');
 			elt_modifier.addEventListener('click', function modifer(event){
 				event.preventDefault()
-				document.location = "IHM_Modifier_Position.html";
+				document.location = "IHM_Modifier_Position.php";
 			})
 
 			//Bouton pour supprimer un article
 			const elt_supprimer = document.getElementById('supprimer');
 			elt_supprimer.addEventListener('click', function supprimer(event){
 				event.preventDefault()
-				document.location = "IHM_Supprimer_Position.html";
+				document.location = "IHM_Supprimer_Position.php";
 			})
 		</script>
 	</body>

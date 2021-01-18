@@ -1,3 +1,9 @@
+<?php 
+	session_start();	//On démarre une session pour utiliser un panier associé au client
+	include_once("fonctions-panier.php");
+?>
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,9 +14,8 @@
 
 	<body>
 		<div id="bloc_page">
-			<header>
-				<img src="images/logo_blanc_petit.png" alt="Logo du projet" />
-			</header>
+			
+			<?php include("entete.php"); ?>
 		
 			<section>
 				<h2>Commande validée avec succès !</h2>
@@ -27,32 +32,29 @@
 				</p>
 				<nav>
 					<div class="bouton" id="retour">
-						<h3><a href="IHM_Page_Client.html">Retour à l'accueil</a></h3>
+						<h3><a href="IHM_Page_Client.php">Retour à l'accueil</a></h3>
 					</div>
 				</nav>
 			</section>
 
-			<footer>
-				<div id="Credits">
-					<p>Projet réalisé par le groupe Robotique Mobile M2 2020-2021</p>					
-				</div>
-				<div id="logo_junia">
-					<img src ="images/logo_junia.png" alt="Logo Junia" />
-				</div>
-				<div id="Retour">
-					<a href="IHM_Commande_Client.html" hidden="hidden">Retour</a>
-				</div>
-			</footer>
+			<?php include("pied_de_page.php"); ?>
+
 		</div>
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 		<script type="text/javascript">
-
-
 			//Bouton de retour
+			const elt_ret = document.getElementById('Retour');
+			elt_ret.addEventListener('click', function retour(event){
+				event.preventDefault()
+				document.location = "IHM_Commande_Client.php";
+			})
+
+
+			//Bouton de retour à l'accueil client
 			const elt_retour = document.getElementById('retour');
 			elt_retour.addEventListener('click', function client(event){
 				event.preventDefault()
-				document.location = "IHM_Page_Client.html";
+				document.location = "IHM_Page_Client.php";
 			})
 		</script>
 	</body>

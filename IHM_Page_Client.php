@@ -1,3 +1,14 @@
+<?php 
+	session_start();	//On démarre une session pour utiliser un panier associé au client
+	include_once("fonctions-panier.php");
+
+	$_SESSION['panier'] = array();
+	$_SESSION['panier']['table'] = NULL;
+	$_SESSION['panier']['nom_produit'] = array();
+	$_SESSION['panier']['quantité_produit'] = array();
+	$_SESSION['panier']['prix_produit'] = array();
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,13 +18,23 @@
 	</head>
 
 	<body>
+		<?php
+			$bdd = new PDO('mysql:host=localhost;dbname=flotte_db', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+			$requete = $bdd->query('SELECT * FROM jeux_video');	//Lecture de la table "position" depuis la base de données 
+		?>
 		<div id="bloc_page">
-			<header>
-				<img src="images/logo_blanc_petit.png" alt="Logo du projet" />
-			</header>
+			
+			<?php include("entete.php"); ?>
 		
 			<section>
 				<h2>Menu Client</h2>
+
+				<select name="choix_table" id="choix_table">
+					<?php 
+
+					?>
+				</select>
+
 				<h2 class="Commande"><br /> Liste des articles :</h2>
 				<div id="Liste_Article">
 					<ul class="Commande">
@@ -37,27 +58,15 @@
 				</nav>
 			</section>
 
-			<footer>
-				<div id="Credits">
-					<p>Projet réalisé par le groupe Robotique Mobile M2 2020-2021</p>					
-				</div>
-				<div id="logo_junia">
-					<img src ="images/logo_junia.png" alt="Logo Junia" />
-				</div>
-				<div id="Retour">
-					<div class="bouton">
-						<a href="IHM_Accueil.html">Retour</a>
-					</div>
-				</div>
-			</footer>
-		</div>
+			<?php include("pied_de_page.php"); ?>
+
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 		<script type="text/javascript">
 			//Bouton pour pré-valider la commande
 			const elt_commande = document.getElementById('commande');
 			elt_commande.addEventListener('click', function commande(event){
 				event.preventDefault()
-				document.location = "IHM_Commande_Client.html";
+				document.location = "IHM_Commande_Client.php";
 			})
 
 			//Appel d'un serveur
@@ -76,7 +85,7 @@
 			const elt_retour = document.getElementById('Retour');
 			elt_retour.addEventListener('click', function client(event){
 				event.preventDefault()
-				document.location = "IHM_Accueil.html";
+				document.location = "IHM_Accueil.php";
 			})
 		</script>
 	</body>

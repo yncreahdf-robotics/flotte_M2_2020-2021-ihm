@@ -8,9 +8,8 @@
 
 	<body>
 		<div id="bloc_page">
-			<header>
-				<img src="images/logo_blanc_petit.png" alt="Logo du projet" />
-			</header>
+			
+			<?php include("entete.php"); ?>
 		
 			<section>
 				<h2>Sélectionner la position à supprimer</h2>
@@ -33,19 +32,8 @@
 				</nav>
 			</section>
 
-			<footer>
-				<div id="Credits">
-					<p>Projet réalisé par le groupe Robotique Mobile M2 2020-2021</p>					
-				</div>
-				<div id="logo_junia">
-					<img src ="images/logo_junia.png" alt="Logo Junia" />
-				</div>
-				<div id="Retour">
-					<div class="bouton">
-						<a href="IHM_Liste_Positions.html">Retour</a>
-					</div>
-				</div>
-			</footer>
+			<?php include("pied_de_page.php"); ?>
+
 		</div>
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 		<script type="text/javascript">
@@ -54,7 +42,7 @@
 				event.preventDefault()
 				if(confirm("Etes-vous sur de vouloir supprimer cette position ?")){
 					alert("La position a été supprimée");
-					document.location = "IHM_Liste_Positions.html";
+					document.location = "IHM_Liste_Positions.php";
 				}
 				else{
 
@@ -65,7 +53,7 @@
 			const elt_retour = document.getElementById('Retour');
 			elt_retour.addEventListener('click', function retour(event){
 				event.preventDefault()
-				document.location = "IHM_Liste_Positions.html";
+				document.location = "IHM_Liste_Positions.php";
 			})
 		</script>
 	</body>
