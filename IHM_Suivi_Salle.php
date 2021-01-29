@@ -7,6 +7,17 @@
 	</head>
 
 	<body>
+
+		<?php
+			try{
+				$bdd = new PDO('mysql:host=192.168.1.5;dbname=flotte_db', 'ihm', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+			}
+			catch(Exception $e){
+				die('Erreur : '.$e->getMessage());
+			}
+			$requete = $bdd->query('SELECT TableID, Etat FROM Table_tb');	//Lecture de la base de donnée
+		?>
+
 		<div id="bloc_page">
 			
 			<?php include("entete.php"); ?>
@@ -37,21 +48,17 @@
 							</tfoot>
 
 							<tbody>
+								<?php 
+									while($donnees = $requete->fetch()){
+								?>
 								<tr>
-									<td>Table 1</td>
-									<td>Occupée</td>
-									<td><input type="submit" value="Libérer la table" id="table1" /></td>
+									<td><?php echo $donnees['TableID']; ?></td>
+									<td><?php echo $donnees['Etat']; ?></td>
+									<td><?php echo "<input type=\"submit\" value=\"Libérer la table\" id=\"table".$donnees['TableID']."\"/>" ;?></td>
 								</tr>
-								<tr>
-									<td>Table 2</td>
-									<td>Occupée</td>
-									<td><input type="submit" value="Libérer la table" id="table2" /></td>
-								</tr>
-								<tr>
-									<td>Table 3</td>
-									<td>Occupée</td>
-									<td><input type="submit" value="Libérer la table" id="table3" /></td>	
-								</tr>
+								<?php
+									}
+								?>
 							</tbody>
 						</table>
 					</div>
@@ -65,8 +72,28 @@
 		<script type="text/javascript">
 			const elt_table1 = document.getElementById('table1');
 			elt_table1.addEventListener('click', function table1(event) {
-				//Lien BDD pour changer l'état de la table vers "Libre"
+				//Lien BDD pour changer l'état de la table sélectionnée vers "Libre"
+				<?php
+					$bdd->exec('UPDATE Table_tb SET Etat = \'FREE\' WHERE TableID = 1');
+					?>
 			})
+
+			const elt_table2 = document.getElementById('table2');
+			elt_table2.addEventListener('click', function table1(event) {
+				//Lien BDD pour changer l'état de la table sélectionnée vers "Libre"
+				<?php
+					$bdd->exec('UPDATE Table_tb SET Etat = \'FREE\' WHERE TableID = 2');
+					?>
+			})
+
+			const elt_table3 = document.getElementById('table3');
+			elt_table3.addEventListener('click', function table1(event) {
+				//Lien BDD pour changer l'état de la table sélectionnée vers "Libre"
+				<?php
+					$bdd->exec('UPDATE Table_tb SET Etat = \'FREE\' WHERE TableID = 3');
+					?>
+			})
+
 
 			//Bouton de retour
 			const elt_retour = document.getElementById('Retour');

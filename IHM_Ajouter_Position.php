@@ -13,7 +13,7 @@
 		
 			<section>
 				<h2>Définir une nouvelle position</h2>
-				<form method="post" action="">
+				<form method="post" action="ajout_position.php">
     				<p>
         				<label for="nom_position">Nom de la position :</label>
         				<input type="text" name="nom_position" id="nom_position" placeholder="Ex : Table1" size="30" maxlength="10" />
@@ -34,8 +34,11 @@
         				<label for="position_W">Position en W :</label>
         				<input type="number" name="position_W" id="position_W" placeholder="Ex : 0.80" step="0.01" />
    					</p>
+   					<br />
+   					<input type="submit" value="Valider" id="valider" />
+   					<br />
 				</form>
-				<p><br /><input type="button" value="Valider" id="valider" /><br /></p>
+				
 			</section>
 
 			<?php include("pied_de_page.php"); ?>

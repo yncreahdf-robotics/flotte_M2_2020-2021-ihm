@@ -8,6 +8,15 @@
 
 	<body>
 		<div id="bloc_page">
+			<?php
+				try{
+					$bdd = new PDO('mysql:host=192.168.1.5;dbname=flotte_db', 'ihm', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+				}
+				catch(Exception $e){
+					die('Erreur : '.$e->getMessage());
+				}
+				$requete = $bdd->query('SELECT RobotIP, RobotType, Position, Etat FROM Robot_tb');	//Lecture table Robot depuis la bdd
+			?>
 			
 			<?php include("entete.php"); ?>
 		
@@ -35,42 +44,18 @@
 							</tfoot>
 
 							<tbody>
+								<?php
+									while($donnees = $requete->fetch()){
+								?>
 								<tr>
-									<td>126</td>
-									<td>Robotino</td>
-									<td>Livraison</td>
-									<td>Préparateur</td>
+									<td><?php echo $donnees['RobotIP'] ;?></td>
+									<td><?php echo $donnees['RobotType'] ;?></td>
+									<td><?php echo $donnees['Etat'] ;?></td>
+									<td><?php echo $donnees['Position'] ;?></td>
 								</tr>
-								<tr>
-									<td>152</td>
-									<td>Robotino</td>
-									<td>En attente</td>
-									<td>Table 3</td>
-								</tr>
-								<tr>
-									<td>198</td>
-									<td>Kobuki</td>
-									<td>En charge</td>
-									<td>Préparateur</td>
-								</tr>
-								<tr>
-									<td>212</td>
-									<td>Kobuki</td>
-									<td>En attente</td>
-									<td>Zone de charge</td>
-								</tr>
-								<tr>
-									<td>146</td>
-									<td>Heron</td>
-									<td>En attente</td>
-									<td>Zone de charge</td>
-								</tr>
-								<tr>
-									<td>209</td>
-									<td>Heron</td>
-									<td>Livraison</td>
-									<td>Table 1</td>
-								</tr>
+								<?php
+									}
+								?>
 							</tbody>
 						</table>
 					</div>

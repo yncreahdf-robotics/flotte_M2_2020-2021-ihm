@@ -19,8 +19,14 @@
 
 	<body>
 		<?php
-			$bdd = new PDO('mysql:host=localhost;dbname=flotte_db', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-			$requete = $bdd->query('SELECT * FROM jeux_video');	//Lecture de la table "position" depuis la base de données 
+			try{
+				$bdd = new PDO('mysql:host=192.168.1.5;dbname=flotte_db', 'ihm', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+			}
+			catch(Exception $e){
+				die('Erreur : '.$e->getMessage());
+			}
+			$requete_commande = $bdd->query('SELECT * FROM Commande_tb');	//Lecture de la table "commande_tb" depuis la base de données
+			$requete_article = $bdd->query('SELECT ArticleID, ArticleName, ArticlePrice FROM Article_tb');	//Lecture du nom et du prix des articles depuis la bdd 
 		?>
 		<div id="bloc_page">
 			
@@ -29,23 +35,30 @@
 			<section>
 				<h2>Menu Client</h2>
 
-				<select name="choix_table" id="choix_table">
-					<?php 
+				<form action="" method="post">
+					<h3>Merci d'indiquer le numéro de la table où vous êtes assis</h3>
+					<input type="radio" name="Choix_table" value="table1" /><label class="label-radio">Table 1</label><br/>
+					<input type="radio" name="Choix_table" value="table2" /><label class="label-radio">Table 2</label><br/>
+					<input type="radio" name="Choix_table" value="table3" /><label class="label-radio">Table 3</label><br/>
+		        	
+					<h2><br /> Liste des articles :</h2>
+					<div id="Liste_Article">
+						<ul>
+						<?php
+							while($donnees = $requete_article->fetch()){
+						?>
+							<li>
+								<?php echo $donnees['ArticleName'];?> - Quantité : <input type="number" step="1" value="0" min="0" max="8"> - Prix unitaire : <?php echo $donnees['ArticlePrice'];?> €
+							</li>
+							<br />
+						<?php
+							}		//Fin du while
+						?>
+						</ul>
 
-					?>
-				</select>
-
-				<h2 class="Commande"><br /> Liste des articles :</h2>
-				<div id="Liste_Article">
-					<ul class="Commande">
-						<li>Article 1  -  Quantité : <input type="number" step="1" value="0" min="0" max="8">  -  Prix unitaire : €  -  Prix total : €</li>
-						<br />
-						<li>Article 2  -  Quantité : <input type="number" step="1" value="0" min="0" max="8">  -  Prix unitaire : €  -  Prix total : €</li>
-						<br />
-						<li>Article 3  -  Quantité : <input type="number" step="1" value="0" min="0" max="8">  -  Prix unitaire : €  -  Prix total : €</li>
-					</ul>
-				</div>
-				<p class="Commande">
+					</div>
+				</form>
+				<p>
 					 Prix total : €
 				</p>
 				<nav>

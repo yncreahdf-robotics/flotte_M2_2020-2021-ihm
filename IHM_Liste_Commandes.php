@@ -8,6 +8,18 @@
 
 	<body>
 		<div id="bloc_page">
+			<?php
+			try{
+				$bdd = new PDO('mysql:host=192.168.1.5;dbname=flotte_db', 'ihm', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+			}
+			catch(Exception $e){
+				die('Erreur : '.$e->getMessage());
+			}
+			$requete = $bdd->query('SELECT a.ArticleName, c.CommandNbr, c.Etat
+				FROM Commande_tb c			/*Lecture tables Article et Commande depuis la bdd*/
+				INNER JOIN Article_tb a 	/*On fait la jointure entre les 2 bdd*/
+				ON c.ArticleID = a.ArticleID');
+			?>
 			
 			<?php include("entete.php"); ?>
 
@@ -18,7 +30,7 @@
 						<thead>
 							<tr>
 								<th>N° Commande</th>
-								<th>Article(s) Commandé(s)</th>
+								<th>Article Commandé</th>
 								<th>Etat</th>
 							</tr>
 						</thead>
@@ -26,37 +38,23 @@
 						<tfoot>
 							<tr>
 								<th>N° Commande</th>
-								<th>Article(s) Commandé(s)</th>
+								<th>Article Commandé</th>
 								<th>Etat</th>
 							</tr>
 						</tfoot>
 
 						<tbody>
+							<?php
+									while($donnees = $requete->fetch()){
+								?>
 							<tr>
-								<td>018</td>
-								<td>Eau x2, Sirop Menthe 12% x1</td>
-								<td>Terminée</td>
+								<td><?php echo $donnees['CommandNbr'] ;?></td>
+								<td><?php echo $donnees['ArticleName'] ;?></td>
+								<td><?php echo $donnees['Etat'] ;?></td>
 							</tr>
-							<tr>
-								<td>019</td>
-								<td>Sirop Fraise 25% x1</td>
-								<td>Terminée</td>
-							</tr>
-							<tr>
-								<td>020</td>
-								<td>Eau x3, Sirop Menthe 12% x1, Sirop Menthe + Fraise x1</td>
-								<td>Préparation en cours</td>
-							</tr>
-							<tr>
-								<td>021</td>
-								<td>Eau x2</td>
-								<td>En attente</td>
-							</tr>
-							<tr>
-								<td>022</td>
-								<td>Sirop Menthe x2</td>
-								<td>En attente</td>
-							</tr>
+							<?php
+								}
+							?>
 						</tbody>
 					</table>
 				</div>

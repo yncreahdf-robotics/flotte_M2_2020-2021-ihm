@@ -13,23 +13,20 @@
 		
 			<section>
 				<h2>Sélectionner la position à supprimer</h2>
-				<form method="post" action="">
+				<form method="post" action="supprimer_position.php">
    					<p>
-       					<input type="radio" name="Position" value="Recharge" id="Recharge" /> <label for="Recharge">Recharge</label><br />
+   						<?php
+       						while($donnees = $requete->fetch()){
+       							echo "<input type=\"radio\" name=\"selected_position\" value=\"".$donnees['PoseID']."\" id=\"".$donnees['PoseName']."\"/><label for=\"".$donnees['PoseName']."\">".$donnees['PoseName']."</label>" ;
+       					?>
        					<br />
-    					<input type="radio" name="Position" value="Table1" id="Table1" /> <label for="ID_212">Table 1</label><br />
-    					<br />
-       					<input type="radio" name="Position" value="Table2" id="Table2" /> <label for="ID_146">Table 2</label><br />
        					<br />
-       					<input type="radio" name="Position" value="Table3" id="Table3" /> <label for="ID_146">Table 3</label><br />
-       					<br />
-       					<input type="radio" name="Position" value="Bar" id="Bar" /> <label for="ID_146">Bar</label><br />
+       					<?php
+       						}
+       					?>
+       					<input type="submit" name="Supprimer" value="Supprimer" id="supprimer" />
    					</p>
 				</form>
-				<br />
-				<nav>
-					<input type="button" name="Supprimer" value="Supprimer" id="supprimer" />
-				</nav>
 			</section>
 
 			<?php include("pied_de_page.php"); ?>

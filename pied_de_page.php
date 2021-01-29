@@ -7,7 +7,7 @@
 	</div>
 	<div id="Retour">
 		<div class="bouton">
-			<a href="IHM_Accueil.php">Retour</a>
+			<a href="">Retour</a>
 		</div>
 	</div>
 </footer>

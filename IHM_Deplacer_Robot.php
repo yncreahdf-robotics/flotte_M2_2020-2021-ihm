@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>		
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -8,37 +8,57 @@
 
 	<body>
 		<div id="bloc_page">
+			<?php
+				try{
+					$bdd = new PDO('mysql:host=192.168.1.5;dbname=flotte_db', 'ihm', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+				}
+				catch(Exception $e){
+					die('Erreur : '.$e->getMessage());
+				}
+				$requete = $bdd->query('SELECT r.RobotIP, r.RobotType, r.Position, r.Etat, t.Role
+				FROM Robot_tb r	/*Lecture table Robot depuis la bdd*/
+				INNER JOIN Type_tb t
+				ON r.RobotType = t.TypeName');
+				$position = $bdd->query('SELECT PoseName FROM Pose_tb');
+			?>
 			
 			<?php include("entete.php"); ?>
 		
 			<section>
 				<h2>Choisir le robot à deplacer parmi les robots disponible</h2>
-				<form method="post" action="">
+				<form method="post" action="deplacer_robot.php">
    					<p>
-       					<input type="radio" name="Robot" value="ID_152" id="ID_152" /> <label for="ID_152">ID : 152 - Type : Robotino</label><br />
+   						<?php
+   							//Robot libre -> Etat = Idle
+   							while($donnees = $requete->fetch()){
+   								if($donnees['Role'] == 'Service'){
+   									echo "<input type=\"radio\" name=\"Robot\" value=\"".$donnees['RobotIP']."\" id=\"".$donnees['RobotIP']."\"/><label for=\"".$donnees['RobotIP']."\">IP : ".$donnees['RobotIP']." - Type : ".$donnees['RobotType']."</label>" ;
+   						?>
        					<br />
-    					<input type="radio" name="Robot" value="ID_212" id="ID_212" /> <label for="ID_212">ID : 212 - Type : Kobuki</label><br />
-    					<br />
-       					<input type="radio" name="Robot" value="ID_146" id="ID_146" /> <label for="ID_146">ID : 146 - Type : Heron</label><br />
+       					<br />
+       					<?php
+       							}	
+       						}
+       					?>
    					</p>
-				</form>
-				<p><br /></p>
+				
+					<br />
 
-				<h2>Choisir la position d'arrivée du robot</h2>
-				<form method="post" action="">
+					<h2>Choisir la position d'arrivée du robot</h2>
    					<p>
-       					<input type="radio" name="Position" value="Charge" id="Charge" /> <label for="Charge">Zone de charge</label><br />
+   						<?php
+   							//Robot libre -> Etat = Idle
+   							while($donnees = $position->fetch()){		
+   								echo "<input type=\"radio\" name=\"Position\" value=\"".$donnees['PoseName']."\" id=\"".$donnees['PoseName']."\"/><label for=\"".$donnees['PoseName']."\">".$donnees['PoseName']."</label>";
+   						?>
        					<br />
-    					<input type="radio" name="Position" value="Preparateur" id="Preparateur" /> <label for="Preparateur">Preparateur</label><br />
-    					<br />
-       					<input type="radio" name="Position" value="Table1" id="Table1" /> <label for="Table1">Table 1</label><br />
        					<br />
-       					<input type="radio" name="Position" value="Table2" id="Table2" /> <label for="Table2">Table 2</label><br />
-       					<br />
-       					<input type="radio" name="Position" value="Table3" id="Table3" /> <label for="Table3">Table 3</label><br />
+       					<?php
+       						}
+       					?>
    					</p>
 				</form>
-				<p><br /><input type="button" name="Supprimer" value="Valider" id="valider" /><br /></p>
+				<p><br /><input type="submit" name="Deplacer" value="Deplacer" id="Deplacer" /><br /></p>
 			</section>
 
 			<?php include("pied_de_page.php"); ?>

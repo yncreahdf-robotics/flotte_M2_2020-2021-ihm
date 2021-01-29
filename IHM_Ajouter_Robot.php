@@ -13,13 +13,29 @@
 		
 			<section>
 				<h2>Saisir le nom du nouveau type de robot</h2>
-				<form method="post" action="">
+				<form method="post" action="ajout_type_robot.php">
     				<p>
         				<label for="type_robot">Type de robot :</label>
-        				<input type="text" name="type_robot" id="type_robot" placeholder="Ex : Robotino" size="30" maxlength="10" />
+        				<input type="text" name="type_robot" id="type_robot" placeholder="Ex : Robotino" size="35" maxlength="30" />
+        				<br /><br />
+        				<label for="role">Role du robot :</label>
+        				<select name="role" id="role">
+        					<option value="Service">Service</option>
+        					<option value="Guide">Guide</option>
+        					<option value="Preparateur">Preparateur</option>
+        					<option value="Melangeur">Melangeur</option>
+        					<option value="Manipulateur">Manipulateur</option>
+        					<option value="Accueil">Accueil</option>
+        				</select>
+        				<br /><br />
+        				<label for="weight_capacity">Poids supporté maximal (en g):</label>
+        				<input type="number" name="weight_capacity" id="weight_capacity" min="-1" step="1" />
    					</p>
+   					<br />
+   					<input type="submit" value="Valider" id="valider" />
+   					<br />
 				</form>
-				<p><br /><input type="button" value="Valider" id="valider"><br /></p>
+				
 			</section>
 
 			<?php include("pied_de_page.php"); ?>

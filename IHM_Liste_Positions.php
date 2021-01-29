@@ -8,6 +8,15 @@
 
 	<body>
 		<div id="bloc_page">
+			<?php
+				try{
+					$bdd = new PDO('mysql:host=192.168.1.5;dbname=flotte_db', 'ihm', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+				}
+						catch(Exception $e){
+					die('Erreur : '.$e->getMessage());
+				}
+				$requete = $bdd->query('SELECT * FROM Pose_tb');	//Lecture table Pose depuis la bdd
+			?>
 			
 			<?php include("entete.php"); ?>
 		
@@ -19,59 +28,37 @@
 							<thead>
 								<tr>
 									<th>Nom</th>
-									<th>X</th>
-									<th>Y</th>
-									<th>Z</th>
-									<th>W</th>
+									<th>Position X</th>
+									<th>Position Y</th>
+									<th>Position Z</th>
+									<th>Angle ω</th>
 								</tr>
 							</thead>
 
 							<tfoot>
 								<tr>
 									<th>Nom</th>
-									<th>X</th>
-									<th>Y</th>
-									<th>Z</th>
-									<th>W</th>
+									<th>Position X</th>
+									<th>Position Y</th>
+									<th>Position Z</th>
+									<th>Angle ω</th>
 								</tr>
 							</tfoot>
 
 							<tbody>
+								<?php
+									while($donnees = $requete->fetch()){
+								?>
 								<tr>
-									<td>Recharge</td>
-									<td>0.08</td>
-									<td>0.36</td>
-									<td>-0.23</td>
-									<td>0.97</td>
+									<td><?php echo $donnees['PoseName'] ;?></td>
+									<td><?php echo $donnees['PoseX'] ;?></td>
+									<td><?php echo $donnees['PoseY'] ;?></td>
+									<td><?php echo $donnees['PoseZ'] ;?></td>
+									<td><?php echo $donnees['PoseW'] ;?></td>
 								</tr>
-								<tr>
-									<td>Table1</td>
-									<td>2.92</td>
-									<td>0.74</td>
-									<td>0.79</td>
-									<td>0.60</td>
-								</tr>
-								<tr>
-									<td>Table2</td>
-									<td>2.00</td>
-									<td>1.17</td>
-									<td>-0.83</td>
-									<td>0.56</td>
-								</tr>
-								<tr>
-									<td>Table3</td>
-									<td>3.51</td>
-									<td>2.90</td>
-									<td>-0.56</td>
-									<td>0.83</td>
-								</tr>
-								<tr>
-									<td>Bar</td>
-									<td>5.48</td>
-									<td>0.87</td>
-									<td>0.95</td>
-									<td>-0.3</td>
-								</tr>
+								<?php
+									}
+								?>
 							</tbody>
 						</table>
 					</div>

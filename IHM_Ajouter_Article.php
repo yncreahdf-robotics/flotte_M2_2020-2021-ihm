@@ -24,26 +24,28 @@
 				<br />
 				<div id="Choix_ajout">
 					<h3>Que voulez vous ajouter ?</h3>
-					<input type="radio" name="Choix_ajout" value="Bouteille" onchange="aff_bouteille('oui'); aff_boisson('non')" /><label class="label-radio">Une bouteille</label><br/>
-		        	<input type="radio" name="Choix_ajout" value="Boisson" onchange="aff_bouteille('non'); aff_boisson('oui')" /><label class="label-radio">Une boisson</label><br/><br/>
+					<input type="radio" name="Choix_ajout" value="Bouteille" onchange="aff_bouteille('oui'); aff_boisson('non')" /><label for="Bouteille" class="label-radio">Une bouteille</label>
+					<br/>
+		        	<input type="radio" name="Choix_ajout" value="Boisson" onchange="aff_bouteille('non'); aff_boisson('oui')" /><label for="Boisson" class="label-radio">Une boisson</label><br/>
+		        	<br/>
 				</div>
 				<div id="block_bouteille" hidden="hidden">
-					<form method="post" action="">
+					<form method="post" action="ajout_bouteille.php">
 	    				<p>
 	        				<label for="nom_bouteille">Nom de la bouteille :</label>
 	        				<input type="text" name="nom_bouteille" id="nom_bouteille" placeholder="Ex : Ice Tea" size="30" maxlength="10" />
 	        				<br />
 	        				<br />
-	        				<label for="emplacement_bouteille">Emplacement de la bouteille :</label>
-	        				<select name="emplacement_bouteille" id="emplacement_bouteille">
-	        					<option value="Emplacement1">NaN</option>
-	        					<option value="Emplacement1"> 1 </option>
-	        					<option value="Emplacement2"> 2 </option>
-	        					<option value="Emplacement3"> 3 </option>
-	        					<option value="Emplacement4"> 4 </option>
-	        					<option value="Emplacement5"> 5 </option>
-	        					<option value="Emplacement6"> 6 </option>
+	        				<label for="doseur">Doseur associé à la bouteille :</label>
+	        				<select name="doseur" id="doseur">
+	        					<option value="Emplacement1">25 mL</option>
+	        					<option value="Emplacement1">35 mL </option>
+	        					<option value="Emplacement2">50 mL</option>
 	        				</select>
+	        				<br />
+	        				<br />
+	        				<input type="submit" value="Valider" id="valider">
+	        				<br />
 	   					</p>
 					</form>
 				</div>
@@ -140,10 +142,10 @@
 	        				<label for="liquide6_dose"> Nombre de dose :</label>
 	        				<input type="number" name="liquide6_dose" id="liquide6_dose" placeholder="0" min="0" max="5">
 	        				<br /><br />
+	        				<br /><input type="submit" value="Valider" id="valider"><br />
 	   					</p>
 					</form>
 				</div>
-				<p><br /><input type="button" value="Valider" id="valider"><br /></p>
 			</section>
 
 			<?php include("pied_de_page.php"); ?>
